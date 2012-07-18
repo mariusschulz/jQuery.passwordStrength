@@ -7,7 +7,7 @@ $(function () {
 
             indicatorClassName: "password-strength-indicator",
 
-            strengthClassNames: ["very-weak", "weak", "medium", "strong", "very-strong"],
+            strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"],
 
             points: {
                 forEachCharacter: 1,
@@ -53,7 +53,7 @@ $(function () {
             passwordContainsSymbol: function () {
                 var self = this,
                     containsSymbol = false,
-                    symbols = "-!ง$%&/()=?.:,~;'#+-/*\"|{}[]_<>\"".split("");
+                    symbols = "-!ยง$%&/()=?.:,~;'#+-/*\"|{}[]_<>\"".split("");
 
                 $.each(symbols, function (index, value) {
                     if (self.password.indexOf(value) > -1) {
