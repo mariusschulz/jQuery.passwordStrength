@@ -44,4 +44,7 @@ and assigns one of the following five classes to the password strength indicator
 
 You can add classes to or remove classes from the existing array without having to modify the plugin itself.
 Please note that classes in the `strengthClassNames` array need to be ordered from the weakest to the strongest
-as the index of the class to return is computed according to the achived score. (It's distributed linearly.)
+as the index of the class to return is computed according to the achived score (it's distributed linearly).
+
+To display the password strength, you can simply apply CSS formatting to the classes provided.
+Of course, nobody stops you from doing some fancy JavaScript stuff based on the assigned classes!
