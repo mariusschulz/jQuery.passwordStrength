@@ -19,7 +19,7 @@ Using `jQuery.passwordStrengthIndicator` is fairly simple — you only need to c
     </script>
     
     
-#How does the plugin work?
+## How does the plugin work?
 
 The password strength algorithm is quite basic.
 It keeps track of a score that increases when a user uses certain characters in his or her password.
