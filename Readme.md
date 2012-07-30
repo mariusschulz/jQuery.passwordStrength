@@ -23,8 +23,8 @@ Using `jQuery.passwordStrengthIndicator` is fairly simple — you only need to c
 ## How does the plugin work?
 
 The password strength algorithm is quite basic.
-It keeps track of a score that increases when a user uses certain characters in his or her password.
-By default, you can configure by how much the score increases every for ...
+It keeps track of a score that increases when a user uses certain characters in their password.
+By default, you can configure by how much the score increases for ...
 
   - **each** character,
   - the usage of at least one **lowercase** character,
@@ -32,9 +32,9 @@ By default, you can configure by how much the score increases every for ...
   - the usage of at least one **number**, and
   - the usage of at least one **symbol**.
 
-The plugin's `secureStrength` property contains the score that you want to treat as secure.
+The plugin's `secureStrength` property contains the score that you consider secure.
 To determine the password strength, the algorithm computes how many percent of the secure strength a user reached
-and assigns one of the following five classes to the password strength indicator display element:
+and assigns one of the following five classes to the password strength indicator display element accordingly:
 
   - *very-weak*
   - *weak*
