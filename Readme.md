@@ -27,6 +27,7 @@ It keeps track of a score that increases when a user uses certain characters in 
 By default, you can configure by how much the score increases for ...
 
   - **each** character,
+  - **each** space,
   - the usage of at least one **lowercase** character,
   - the usage of at least one **uppercase** character,
   - the usage of at least one **number**, and
