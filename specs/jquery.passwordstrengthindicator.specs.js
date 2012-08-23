@@ -37,6 +37,11 @@ describe("jquery.passwordStrengthIndicator", function() {
 			result = input.psi("calculate", "AB");
 			expect(result).toEqual(4);
 		});
+		
+		it("should give 4 points extra when it contains a number", function() {
+			result = input.psi("calculate", "1");
+			expect(result).toEqual(5);
+		});
 
 	});
 

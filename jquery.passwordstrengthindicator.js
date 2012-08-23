@@ -9,12 +9,17 @@ $(function () {
 			return /[A-Z]/.test(value);
 		};
 		
+		var passwordContainsNumber = function (value) {
+			return /[0-9]/.test(value);
+		}
+		
 		return {
 			calculate: function(value, points) {
 				var score = value.length * points.forEachCharacter;
 				
 				if (passwordContainsLowercaseLetter(value)) score += points.containsLowercaseLetter;
                 if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
+				if (passwordContainsNumber(value)) score += points.containsNumber;
 				
                 return score;
 			}
@@ -69,7 +74,6 @@ $(function () {
 			
 			var $inputElement = $(this);
 			var $indicatorElement = $("<span>&nbsp;</span>").attr("class", settings.indicatorClassName);
-			
 			
 			var indicator = new Indicator($indicatorElement, settings);
 			
