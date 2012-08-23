@@ -62,6 +62,11 @@ describe("jquery.passwordStrengthIndicator", function() {
 			result = input.psi("calculate", "aB1?");
 			expect(result).toEqual(17);
 		});
+		
+		it("should give lots of points for a really strong password", function() {
+			result = input.psi("calculate", "This 1 is a really? strong password");
+			expect(result).toEqual(48);
+		});
 	
 	});
 
