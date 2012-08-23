@@ -1,9 +1,21 @@
 $(function () {
 	
 	function PasswordStrengthCalculator() {
+		var passwordContainsLowercaseLetter = function (value) {
+            return /[a-z]/.test(value);
+		};
+
+		var passwordContainsUppercaseLetter = function (value) {
+			return /[A-Z]/.test(value);
+		};
+		
 		return {
 			calculate: function(value, points) {
 				var score = value.length * points.forEachCharacter;
+				
+				if (passwordContainsLowercaseLetter(value)) score += points.containsLowercaseLetter;
+                if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
+				
                 return score;
 			}
 		};
