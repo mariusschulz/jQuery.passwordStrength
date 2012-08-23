@@ -47,7 +47,22 @@ describe("jquery.passwordStrengthIndicator", function() {
 			result = input.psi("calculate", "!");
 			expect(result).toEqual(6);
 		});
-
+		
+		it("should give 6 points for 1 lowercase, 1 uppercase characters", function() {
+			result = input.psi("calculate", "aB");
+			expect(result).toEqual(6);
+		});
+		
+		it("should give 8 points for 2 lowercase, 2 uppercase characters", function() {
+			result = input.psi("calculate", "aBcD");
+			expect(result).toEqual(8);
+		});
+		
+		it("should give 17 points for 1 lowercase, 1 uppercase characters, 1 number and 1 symbol", function() {
+			result = input.psi("calculate", "aB1?");
+			expect(result).toEqual(17);
+		});
+	
 	});
 
 	describe("Indicator", function() {
