@@ -18,7 +18,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 			expect(result).toEqual(0);
 		});
 		
-		it("should give 3 point for 1 lowercase letter", function() {
+		it("should give 3 points for 1 lowercase letter", function() {
 			result = input.psi("calculate", "a");
 			expect(result).toEqual(3);
 		});
