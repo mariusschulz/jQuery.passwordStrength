@@ -78,6 +78,10 @@ $(function () {
 			}
 			
 			return calculator.calculate(value, settings.points);
+		},
+		
+		defaults : function() {
+			return defaults;
 		}
 	};
 
