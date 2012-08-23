@@ -1,4 +1,98 @@
 $(function () {
+	
+	function PasswordStrengthCalculator() {
+		return {
+			calculate: function(value, points) {
+				var score = value.length * points.forEachCharacter;
+                return score;
+			}
+		};
+	};
+	
+	function Indicator(indicator, settings) {
+		var $indicator = $(indicator);
+		
+		var getStrengthClass = function(score) {
+			var strengthIndex = parseInt(Math.round(score * (settings.strengthClassNames.length - 1) * 100 / settings.secureStrength) / 100);
+			if (strengthIndex >= settings.strengthClassNames.length) {
+				strengthIndex = settings.strengthClassNames.length - 1;
+			}
+			var strengthClass = settings.strengthClassNames[strengthIndex];
+			return strengthClass;
+		}
+		
+		return {
+			refresh: function(score) {
+				var strengthClass = getStrengthClass(score);
+				$.each(settings.strengthClassNames, function (index, value) {
+                    $indicator.removeClass(value);
+                });
+				$indicator.addClass(strengthClass);
+			}
+		};
+	};
+	
+	var calculator;
+	
+	var defaults = {
+		secureStrength: 25,
+		
+		indicatorClassName: "password-strength-indicator",
+	
+		points: {
+			forEachCharacter: 1,
+			forEachSpace: 1,
+			containsLowercaseLetter: 2,
+			containsUppercaseLetter: 2,
+			containsNumber: 4,
+			containsSymbol: 5
+		},
+		
+		strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+	};
+	
+	var methods = {
+		init : function(options) { 
+			var settings = $.extend(defaults, options);
+			
+			var $inputElement = $(this);
+			var $indicatorElement = $("<span>&nbsp;</span>").attr("class", settings.indicatorClassName);
+			
+			
+			var indicator = new Indicator($indicatorElement, settings);
+			
+			$inputElement.on("keyup", function () {
+				var value = $inputElement.val();
+				var score = methods.calculate(value, settings);
+				indicator.refresh(score);
+			});
+			
+			return $inputElement.after($indicatorElement);
+		},
+		
+		calculate : function(value, options) {
+			var settings = $.extend(defaults, options);
+			
+			if (!calculator) {
+				calculator = new PasswordStrengthCalculator();
+			}
+			
+			return calculator.calculate(value, settings.points);
+		}
+	};
+
+	$.fn.psi = function(method) {
+
+		if ( methods[method] ) {
+			return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+		} else if (typeof method === "object" || ! method) {
+			return methods.init.apply(this, arguments);
+		} else {
+			$.error("Method " +  method + " does not exist on jQuery.passwordStrengthIndicator");
+		}
+
+	};
+
     $.fn.passwordStrengthIndicator = function ($displayElement) {
         var $inputElement = $(this);
 
