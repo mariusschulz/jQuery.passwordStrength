@@ -43,7 +43,7 @@ $(function () {
 	};
 	
 	function Indicator(indicator, settings) {
-		var $indicator = $(indicator);
+		var $indicator = $(indicator).hide();
 		
 		var getStrengthClass = function(score) {
 			var strengthIndex = parseInt(Math.round(score * (settings.strengthClassNames.length - 1) * 100 / settings.secureStrength) / 100);
@@ -56,6 +56,11 @@ $(function () {
 		
 		return {
 			refresh: function(score) {
+				if (score > 0) {
+					$indicator.show();
+				} else {
+					$indicator.hide();
+				}
 				var strengthClass = getStrengthClass(score);
 				$.each(settings.strengthClassNames, function (index, value) {
                     $indicator.removeClass(value);

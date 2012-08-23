@@ -52,11 +52,13 @@ describe("jquery.passwordStrengthIndicator", function() {
 
 	describe("Indicator", function() {
 		var html;
+		var input;
 		var defaults;
 
 		beforeEach(function() {
 			html = $("#root");
-			defaults = $("#password").psi().psi("defaults");
+			input = $("#password").psi();
+			defaults = input.psi("defaults");
 		});
 		
 		function getIndicator() {
@@ -65,6 +67,22 @@ describe("jquery.passwordStrengthIndicator", function() {
 
 		it("should have default indicator class name", function() {
 			expect(getIndicator().attr("class")).toEqual("password-strength-indicator");
+		});
+		
+		it("should be hidden before typing", function() {
+			expect(getIndicator().css("display")).toEqual("none");
+		});
+		
+		it("should be displayed when it contains 1 ore more characters", function() {
+			input.val("a").trigger("keyup");
+			expect(getIndicator().css("display")).toEqual("block");
+		});
+		
+		it("should be hidden when it becomes emtpy", function() {
+			input.val("a").trigger("keyup");
+			expect(getIndicator().css("display")).toEqual("block");
+			input.val("").trigger("keyup");
+			expect(getIndicator().css("display")).toEqual("none");
 		});
 				
 		describe("Strength class names", function() {
