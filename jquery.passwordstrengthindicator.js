@@ -13,6 +13,21 @@ $(function () {
 			return /[0-9]/.test(value);
 		}
 		
+		var passwordContainsSymbol = function (value) {
+			var self = this,
+				containsSymbol = false,
+				symbols = "-!§$%&/()=?.:,~;'#+-/*\"|{}[]_<>\"".split("");
+
+			$.each(symbols, function (index, symbol) {
+				if (value.indexOf(symbol) > -1) {
+					containsSymbol = true;
+					return;
+				}
+			});
+
+			return containsSymbol;
+		}
+		
 		return {
 			calculate: function(value, points) {
 				var score = value.length * points.forEachCharacter;
@@ -20,6 +35,7 @@ $(function () {
 				if (passwordContainsLowercaseLetter(value)) score += points.containsLowercaseLetter;
                 if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
 				if (passwordContainsNumber(value)) score += points.containsNumber;
+				if (passwordContainsSymbol(value)) score += points.containsSymbol;
 				
                 return score;
 			}
