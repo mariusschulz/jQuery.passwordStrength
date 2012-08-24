@@ -18,32 +18,32 @@ describe("jquery.passwordStrengthIndicator", function() {
 			expect(result).toEqual(0);
 		});
 		
-		it("should give 3 points for 1 lowercase letter", function() {
+		it("should give 3 points for 1 lowercase character", function() {
 			result = input.psi("calculate", "a");
 			expect(result).toEqual(3);
 		});
 		
-		it("should give 4 points for 2 lowercase letters", function() {
+		it("should give 4 points for 2 lowercase characters", function() {
 			result = input.psi("calculate", "ab");
 			expect(result).toEqual(4);
 		});
 		
-		it("should give 3 points for 1 uppercase letter", function() {
+		it("should give 3 points for 1 uppercase character", function() {
 			result = input.psi("calculate", "A");
 			expect(result).toEqual(3);
 		});
 		
-		it("should give 4 points for 2 uppercase letter", function() {
+		it("should give 4 points for 2 uppercase characters", function() {
 			result = input.psi("calculate", "AB");
 			expect(result).toEqual(4);
 		});
 		
-		it("should give 4 points extra when it contains a number", function() {
+		it("should give 4 points extra when password contains a number", function() {
 			result = input.psi("calculate", "1");
 			expect(result).toEqual(5);
 		});
 		
-		it("should give 5 points extra when it contains a symbol", function() {
+		it("should give 5 points extra when password contains a symbol", function() {
 			result = input.psi("calculate", "!");
 			expect(result).toEqual(6);
 		});
