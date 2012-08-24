@@ -95,12 +95,12 @@ describe("jquery.passwordStrengthIndicator", function() {
 		
 		it("should be displayed when it contains 1 ore more characters", function() {
 			input.val("a").trigger("keyup");
-			expect(getIndicator().css("display")).toEqual("block");
+			expect(getIndicator().css("display")).toEqual("inline-block");
 		});
 		
 		it("should be hidden when it becomes emtpy", function() {
 			input.val("a").trigger("keyup");
-			expect(getIndicator().css("display")).toEqual("block");
+			expect(getIndicator().css("display")).toEqual("inline-block");
 			input.val("").trigger("keyup");
 			expect(getIndicator().css("display")).toEqual("none");
 		});

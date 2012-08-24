@@ -57,7 +57,7 @@ $(function () {
 		return {
 			refresh: function(score) {
 				if (score > 0) {
-					$indicator.show();
+					$indicator.css("display", settings.indicatorDisplayType);
 				} else {
 					$indicator.hide();
 				}
@@ -76,6 +76,8 @@ $(function () {
 		secureStrength: 25,
 		
 		indicatorClassName: "password-strength-indicator",
+		
+		indicatorDisplayType: "inline-block",
 	
 		points: {
 			forEachCharacter: 1,
