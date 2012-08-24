@@ -28,17 +28,17 @@ describe("jquery.passwordStrengthIndicator", function() {
 		
 		it("should initialize the plugin calling it with no arguments", function () {
 			var html = $("#root");
-			var results = $("#password").psi();
+			var results = $("#password").passwordStrengthIndicator();
 			expect(html.find(".password-strength-indicator").length).toEqual(1);
 		});
 		
 		it("should get the defaults calling the plugin with 'defaults' as the first argument", function () {
-			var results = $("#password").psi("defaults");
+			var results = $("#password").passwordStrengthIndicator("defaults");
 			expect(results).toEqual(defaults);
 		});
 		
 		it("should get the score calling the plugin with 'calculate' as the first argument and a string as the second argument", function () {
-			var results = $("#password").psi("calculate", "abc");
+			var results = $("#password").passwordStrengthIndicator("calculate", "abc");
 			expect(results).toBeGreaterThan(0);
 		});
 		
@@ -53,57 +53,57 @@ describe("jquery.passwordStrengthIndicator", function() {
 		});
 
 		it("should give 0 points for empty string", function() {
-			result = input.psi("calculate", "");
+			result = input.passwordStrengthIndicator("calculate", "");
 			expect(result).toEqual(0);
 		});
 		
 		it("should give 3 points for 1 lowercase character", function() {
-			result = input.psi("calculate", "a");
+			result = input.passwordStrengthIndicator("calculate", "a");
 			expect(result).toEqual(3);
 		});
 		
 		it("should give 4 points for 2 lowercase characters", function() {
-			result = input.psi("calculate", "ab");
+			result = input.passwordStrengthIndicator("calculate", "ab");
 			expect(result).toEqual(4);
 		});
 		
 		it("should give 3 points for 1 uppercase character", function() {
-			result = input.psi("calculate", "A");
+			result = input.passwordStrengthIndicator("calculate", "A");
 			expect(result).toEqual(3);
 		});
 		
 		it("should give 4 points for 2 uppercase characters", function() {
-			result = input.psi("calculate", "AB");
+			result = input.passwordStrengthIndicator("calculate", "AB");
 			expect(result).toEqual(4);
 		});
 		
 		it("should give 4 points extra when password contains a number", function() {
-			result = input.psi("calculate", "1");
+			result = input.passwordStrengthIndicator("calculate", "1");
 			expect(result).toEqual(5);
 		});
 		
 		it("should give 5 points extra when password contains a symbol", function() {
-			result = input.psi("calculate", "!");
+			result = input.passwordStrengthIndicator("calculate", "!");
 			expect(result).toEqual(6);
 		});
 		
 		it("should give 6 points for 1 lowercase, 1 uppercase characters", function() {
-			result = input.psi("calculate", "aB");
+			result = input.passwordStrengthIndicator("calculate", "aB");
 			expect(result).toEqual(6);
 		});
 		
 		it("should give 8 points for 2 lowercase, 2 uppercase characters", function() {
-			result = input.psi("calculate", "aBcD");
+			result = input.passwordStrengthIndicator("calculate", "aBcD");
 			expect(result).toEqual(8);
 		});
 		
 		it("should give 17 points for 1 lowercase, 1 uppercase characters, 1 number and 1 symbol", function() {
-			result = input.psi("calculate", "aB1?");
+			result = input.passwordStrengthIndicator("calculate", "aB1?");
 			expect(result).toEqual(17);
 		});
 		
 		it("should give lots of points for a really strong password", function() {
-			result = input.psi("calculate", "This 1 is a really? strong password");
+			result = input.passwordStrengthIndicator("calculate", "This 1 is a really? strong password");
 			expect(result).toEqual(48);
 		});
 	
@@ -116,8 +116,8 @@ describe("jquery.passwordStrengthIndicator", function() {
 
 		beforeEach(function() {
 			html = $("#root");
-			input = $("#password").psi();
-			defaults = input.psi("defaults");
+			input = $("#password").passwordStrengthIndicator();
+			defaults = input.passwordStrengthIndicator("defaults");
 		});
 		
 		function getIndicator() {
@@ -153,7 +153,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 				options = { indicatorClassName: "indicator" };
 				
 				html = $("#root");
-				input = $("#password").psi(options);
+				input = $("#password").passwordStrengthIndicator(options);
 			});
 			
 			function setInputValueTo(value) {
