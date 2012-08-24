@@ -4,6 +4,45 @@ describe("jquery.passwordStrengthIndicator", function() {
 	beforeEach(function() {
 		jasmine.getFixtures().set(fixtureHtml);
 	});
+	
+	describe("Methods", function() {
+		
+		var defaults = {
+			secureStrength: 25,
+			
+			indicatorClassName: "password-strength-indicator",
+			
+			indicatorDisplayType: "inline-block",
+		
+			points: {
+				forEachCharacter: 1,
+				forEachSpace: 1,
+				containsLowercaseLetter: 2,
+				containsUppercaseLetter: 2,
+				containsNumber: 4,
+				containsSymbol: 5
+			},
+			
+			strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+		};
+		
+		it("should initialize the plugin calling it with no arguments", function () {
+			var html = $("#root");
+			var results = $("#password").psi();
+			expect(html.find(".password-strength-indicator").length).toEqual(1);
+		});
+		
+		it("should get the defaults calling the plugin with 'defaults' as the first argument", function () {
+			var results = $("#password").psi("defaults");
+			expect(results).toEqual(defaults);
+		});
+		
+		it("should get the score calling the plugin with 'calculate' as the first argument and a string as the second argument", function () {
+			var results = $("#password").psi("calculate", "abc");
+			expect(results).toBeGreaterThan(0);
+		});
+		
+	});
 
 	describe("PasswordStrengthCalculator", function() {
 		var input;
