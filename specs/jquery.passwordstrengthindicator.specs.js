@@ -130,6 +130,21 @@ describe("jquery.passwordStrengthIndicator", function() {
 				expect(getIndicator().hasClass("very-weak")).toEqual(true);
 			});
 			
+			it("should have week class for password with 7 points", function() {
+				setInputValueTo("abcde");
+				expect(getIndicator().hasClass("weak")).toEqual(true);
+			});
+			
+			it("should have mediocre class for password with 13 points", function() {
+				setInputValueTo("abcdefghijk");
+				expect(getIndicator().hasClass("mediocre")).toEqual(true);
+			});
+			
+			it("should have strong class for password with 19 points", function() {
+				setInputValueTo("abcdefghijklmnopq");
+				expect(getIndicator().hasClass("strong")).toEqual(true);
+			});
+			
 			it("should have very-strong class for password with 25 points", function() {
 				setInputValueTo("abcdefghijklmnopqrstuvwxz");
 				expect(getIndicator().hasClass("very-strong")).toEqual(true);
