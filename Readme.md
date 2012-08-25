@@ -10,12 +10,11 @@ Using `jQuery.passwordStrengthIndicator` is fairly simple — you only need to c
 
     <form action="#" method="get">
         <input type="password" id="password" />
-        <span id="indicator">&nbsp;</span>
     </form>
 
     <script type="text/javascript">
         $(function() {
-            $("#password").passwordStrengthIndicator($("#indicator"));
+            $("#password").passwordStrengthIndicator();
         });
     </script>
     
@@ -50,3 +49,21 @@ as the index of the class to return is computed according to the achived score (
 To display the password strength, you can simply apply CSS formatting to the classes provided;
 please refer to the demos for examples.
 Of course, nobody stops you from doing some fancy JavaScript stuff based on the assigned classes!
+
+## Options
+Below are the options and it's default values that you override by passing an object to the plugin.
+
+        $("#password").passwordStrengthIndicator({
+            	secureStrength: 25,
+                indicatorClassName: "password-strength-indicator",
+                indicatorDisplayType: "inline-block",
+                points: {
+                    forEachCharacter: 1,
+                    forEachSpace: 1,
+                    containsLowercaseLetter: 2,
+                    containsUppercaseLetter: 2,
+                    containsNumber: 4,
+                    containsSymbol: 5
+                },
+                strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+        });
