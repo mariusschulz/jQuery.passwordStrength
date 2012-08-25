@@ -2,16 +2,20 @@ $(function () {
 	
 	function PasswordStrengthCalculator() {
 		var passwordContainsLowercaseLetter = function (value) {
-            return /[a-z]/.test(value);
+			return /[a-z]/.test(value);
 		};
 
 		var passwordContainsUppercaseLetter = function (value) {
 			return /[A-Z]/.test(value);
 		};
 		
+		var passwordContainsSpaces = function(value) {
+			return / /.test(value);
+		};
+		
 		var passwordContainsNumber = function (value) {
 			return /[0-9]/.test(value);
-		}
+		};
 		
 		var passwordContainsSymbol = function (value) {
 			var self = this,
@@ -26,14 +30,19 @@ $(function () {
 			});
 
 			return containsSymbol;
-		}
+		};
+		
+		var passwordSpaceCount = function(value) {
+			return value.split(/ +/).length - 1;
+		};
 		
 		return {
 			calculate: function(value, points) {
 				var score = value.length * points.forEachCharacter;
 				
+				if (passwordContainsSpaces(value)) score += passwordSpaceCount(value) * points.forEachSpace;
 				if (passwordContainsLowercaseLetter(value)) score += points.containsLowercaseLetter;
-                if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
+				if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
 				if (passwordContainsNumber(value)) score += points.containsNumber;
 				if (passwordContainsSymbol(value)) score += points.containsSymbol;
 				

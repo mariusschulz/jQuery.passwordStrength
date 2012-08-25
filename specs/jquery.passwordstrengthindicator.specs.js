@@ -72,6 +72,16 @@ describe("jquery.passwordStrengthIndicator", function() {
 			expect(result).toEqual(3);
 		});
 		
+		it("should give 1 point extra for 1 space", function() {
+			result = input.passwordStrengthIndicator("calculate", "a b");
+			expect(result).toEqual(6);
+		});
+		
+		it("should give 2 points extra for 2 spaces", function() {
+			result = input.passwordStrengthIndicator("calculate", "a b ");
+			expect(result).toEqual(8);
+		});
+		
 		it("should give 4 points for 2 uppercase characters", function() {
 			result = input.passwordStrengthIndicator("calculate", "AB");
 			expect(result).toEqual(4);
@@ -104,7 +114,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 		
 		it("should give lots of points for a really strong password", function() {
 			result = input.passwordStrengthIndicator("calculate", "This 1 is a really? strong password");
-			expect(result).toEqual(48);
+			expect(result).toEqual(54);
 		});
 	
 	});
