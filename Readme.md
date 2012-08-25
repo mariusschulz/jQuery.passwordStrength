@@ -53,17 +53,17 @@ Of course, nobody stops you from doing some fancy JavaScript stuff based on the 
 ## Options
 Below are the options and it's default values that you override by passing an object to the plugin.
 
-        $("#password").passwordStrengthIndicator({
-            	secureStrength: 25,
-                indicatorClassName: "password-strength-indicator",
-                indicatorDisplayType: "inline-block",
-                points: {
-                    forEachCharacter: 1,
-                    forEachSpace: 1,
-                    containsLowercaseLetter: 2,
-                    containsUppercaseLetter: 2,
-                    containsNumber: 4,
-                    containsSymbol: 5
-                },
-                strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
-        });
+    $("#password").passwordStrengthIndicator({
+            secureStrength: 25,
+            indicatorClassName: "password-strength-indicator",
+            indicatorDisplayType: "inline-block",
+            points: {
+                forEachCharacter: 1,
+                forEachSpace: 1,
+                containsLowercaseLetter: 2,
+                containsUppercaseLetter: 2,
+                containsNumber: 4,
+                containsSymbol: 5
+            },
+            strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+    });
