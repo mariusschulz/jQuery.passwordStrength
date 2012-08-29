@@ -102,6 +102,11 @@ describe("jquery.passwordStrengthIndicator", function() {
 			expect(result).toEqual(6);
 		});
 		
+		it("should give 6 points for 1 backslash", function() {
+			result = input.passwordStrengthIndicator("calculate", "\\");
+			expect(result).toEqual(6);
+		});
+		
 		it("should give 8 points for 2 lowercase, 2 uppercase characters", function() {
 			result = input.passwordStrengthIndicator("calculate", "aBcD");
 			expect(result).toEqual(8);

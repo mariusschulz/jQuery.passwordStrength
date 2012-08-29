@@ -20,7 +20,7 @@ $(function () {
 		var passwordContainsSymbol = function (value) {
 			var self = this,
 				containsSymbol = false,
-				symbols = "-!§$%&/()=?.:,~;'#+-/*\"|{}[]_<>\"".split("");
+				symbols = "-!§$%&/()=?.:,~;'#+-/*\\|{}[]_<>\"".split("");
 
 			$.each(symbols, function (index, symbol) {
 				if (value.indexOf(symbol) > -1) {
