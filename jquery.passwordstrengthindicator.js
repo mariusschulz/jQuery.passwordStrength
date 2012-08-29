@@ -25,7 +25,9 @@ $(function () {
 			$.each(symbols, function (index, symbol) {
 				if (value.indexOf(symbol) > -1) {
 					containsSymbol = true;
-					return;
+
+					// We found a symbol. Therefore, return false to exit $.each early.
+					return false;
 				}
 			});
 
@@ -134,7 +136,6 @@ $(function () {
 	};
 
 	$.fn.passwordStrengthIndicator = function(method) {
-
 		if ( methods[method] ) {
 			return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
 		} else if (typeof method === "object" || ! method) {
@@ -142,7 +143,6 @@ $(function () {
 		} else {
 			$.error("Method " +  method + " does not exist on jQuery.passwordStrengthIndicator");
 		}
-
 	};
 
 });
