@@ -51,7 +51,7 @@ please refer to the demos for examples.
 Of course, nobody stops you from doing some fancy JavaScript stuff based on the assigned classes!
 
 ## Options
-Below are the options and it's default values that you override by passing an object to the plugin.
+Below are the options and the default values that you can override by passing a settings object into the plugin.
 
     $("#password").passwordStrengthIndicator({
             secureStrength: 25,
