@@ -105,7 +105,7 @@ $(function() {
 	
 	var methods = {
 		init: function(options) { 
-			var settings = $.extend(defaults, options);
+			var settings = $.extend({}, defaults, options);
 			
 			var $inputElement = $(this);
 			var $indicatorElement = $("<span>&nbsp;</span>").attr("class", settings.indicatorClassName);

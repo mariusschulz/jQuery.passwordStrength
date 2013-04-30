@@ -41,7 +41,15 @@ describe("jquery.passwordStrengthIndicator", function() {
 			var results = $("#password").passwordStrengthIndicator("calculate", "abc");
 			expect(results).toBeGreaterThan(0);
 		});
-		
+
+		it("should not modify the default indicator class name when setting a custom one", function() {
+			$("#password").passwordStrengthIndicator({
+				indicatorClassName: "different-class-name"
+			});
+
+			var defaults = $("#password").passwordStrengthIndicator("defaults");
+			expect(defaults	.indicatorClassName).toEqual("password-strength-indicator");
+		})
 	});
 
 	describe("PasswordStrengthCalculator", function() {
