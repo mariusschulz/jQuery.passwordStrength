@@ -34,7 +34,7 @@ $(function() {
 			return containsSymbol;
 		}
 		
-		function passwordSpaceCount(value) {
+		function countSpaces(value) {
 			return value.split(/ +/).length - 1;
 		}
 		
@@ -42,7 +42,7 @@ $(function() {
 			calculate: function(value, points) {
 				var score = value.length * points.forEachCharacter;
 				
-				if (passwordContainsSpaces(value)) score += passwordSpaceCount(value) * points.forEachSpace;
+				if (passwordContainsSpaces(value)) score += countSpaces(value) * points.forEachSpace;
 				if (passwordContainsLowercaseLetter(value)) score += points.containsLowercaseLetter;
 				if (passwordContainsUppercaseLetter(value)) score += points.containsUppercaseLetter;
 				if (passwordContainsNumber(value)) score += points.containsNumber;
