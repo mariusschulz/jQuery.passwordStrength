@@ -26,7 +26,7 @@ $(function () {
 				if (value.indexOf(symbol) > -1) {
 					containsSymbol = true;
 
-					// We found a symbol. Therefore, return false to exit $.each early.
+					// We found a symbol. Therefore, return false to exit $.each early (short-circuit).
 					return false;
 				}
 			});
@@ -61,8 +61,8 @@ $(function () {
 			if (strengthIndex >= settings.strengthClassNames.length) {
 				strengthIndex = settings.strengthClassNames.length - 1;
 			}
-			var strengthClass = settings.strengthClassNames[strengthIndex];
-			return strengthClass;
+
+			return settings.strengthClassNames[strengthIndex];
 		}
 		
 		return {
@@ -72,6 +72,7 @@ $(function () {
 				} else {
 					$indicator.hide();
 				}
+				
 				var strengthClass = getStrengthClass(score);
 				$.each(settings.strengthClassNames, function (index, value) {
                     $indicator.removeClass(value);
@@ -103,7 +104,7 @@ $(function () {
 	};
 	
 	var methods = {
-		init : function(options) { 
+		init: function(options) { 
 			var settings = $.extend(defaults, options);
 			
 			var $inputElement = $(this);
@@ -112,15 +113,15 @@ $(function () {
 			var indicator = new Indicator($indicatorElement, settings);
 			
 			$inputElement.on("keyup", function () {
-				var value = $inputElement.val();
-				var score = methods.calculate(value, settings);
+				var password = $inputElement.val();
+				var score = methods.calculate(password, settings);
 				indicator.refresh(score);
 			});
 			
 			return $inputElement.after($indicatorElement);
 		},
 		
-		calculate : function(value, options) {
+		calculate: function(value, options) {
 			var settings = $.extend(defaults, options);
 			
 			if (!calculator) {
@@ -130,15 +131,15 @@ $(function () {
 			return calculator.calculate(value, settings.points);
 		},
 		
-		defaults : function() {
+		defaults: function() {
 			return defaults;
 		}
 	};
 
 	$.fn.passwordStrengthIndicator = function(method) {
-		if ( methods[method] ) {
-			return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-		} else if (typeof method === "object" || ! method) {
+		if (methods[method]) {
+			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+		} else if (typeof method === "object" || !method) {
 			return methods.init.apply(this, arguments);
 		} else {
 			$.error("Method " +  method + " does not exist on jQuery.passwordStrengthIndicator");
