@@ -1,28 +1,28 @@
-$(function () {
+$(function() {
 	
 	function PasswordStrengthCalculator() {
-		var passwordContainsLowercaseLetter = function (value) {
+		function passwordContainsLowercaseLetter (value) {
 			return /[a-z]/.test(value);
-		};
+		}
 
-		var passwordContainsUppercaseLetter = function (value) {
+		function passwordContainsUppercaseLetter (value) {
 			return /[A-Z]/.test(value);
-		};
+		}
 		
-		var passwordContainsSpaces = function(value) {
+		function passwordContainsSpaces(value) {
 			return / /.test(value);
-		};
+		}
 		
-		var passwordContainsNumber = function (value) {
+		function passwordContainsNumber(value) {
 			return /[0-9]/.test(value);
-		};
+		}
 		
-		var passwordContainsSymbol = function (value) {
+		function passwordContainsSymbol(value) {
 			var self = this,
 				containsSymbol = false,
 				symbols = "-!§$%&/()=?.:,~;'#+-/*\\|{}[]_<>\"".split("");
 
-			$.each(symbols, function (index, symbol) {
+			$.each(symbols, function(index, symbol) {
 				if (value.indexOf(symbol) > -1) {
 					containsSymbol = true;
 
@@ -32,11 +32,11 @@ $(function () {
 			});
 
 			return containsSymbol;
-		};
+		}
 		
-		var passwordSpaceCount = function(value) {
+		function passwordSpaceCount(value) {
 			return value.split(/ +/).length - 1;
-		};
+		}
 		
 		return {
 			calculate: function(value, points) {
@@ -56,7 +56,7 @@ $(function () {
 	function Indicator(indicator, settings) {
 		var $indicator = $(indicator).hide();
 		
-		var getStrengthClass = function(score) {
+		function getStrengthClass(score) {
 			var strengthIndex = parseInt(Math.round(score * (settings.strengthClassNames.length - 1) * 100 / settings.secureStrength) / 100);
 			if (strengthIndex >= settings.strengthClassNames.length) {
 				strengthIndex = settings.strengthClassNames.length - 1;
@@ -72,9 +72,9 @@ $(function () {
 				} else {
 					$indicator.hide();
 				}
-				
+
 				var strengthClass = getStrengthClass(score);
-				$.each(settings.strengthClassNames, function (index, value) {
+				$.each(settings.strengthClassNames, function(index, value) {
                     $indicator.removeClass(value);
                 });
 				$indicator.addClass(strengthClass);
@@ -112,7 +112,7 @@ $(function () {
 			
 			var indicator = new Indicator($indicatorElement, settings);
 			
-			$inputElement.on("keyup", function () {
+			$inputElement.on("keyup", function() {
 				var password = $inputElement.val();
 				var score = methods.calculate(password, settings);
 				indicator.refresh(score);
