@@ -1,5 +1,4 @@
 $(function() {
-	
 	function PasswordStrengthCalculator() {
 		function passwordContainsLowercaseLetter (value) {
 			return /[a-z]/.test(value);
@@ -145,5 +144,4 @@ $(function() {
 			$.error("Method " +  method + " does not exist on jQuery.passwordStrengthIndicator");
 		}
 	};
-
 });

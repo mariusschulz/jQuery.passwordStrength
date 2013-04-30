@@ -6,7 +6,6 @@ describe("jquery.passwordStrengthIndicator", function() {
 	});
 	
 	describe("Methods", function() {
-		
 		var defaults = {
 			secureStrength: 25,
 			
@@ -49,7 +48,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 
 			var defaults = $("#password").passwordStrengthIndicator("defaults");
 			expect(defaults	.indicatorClassName).toEqual("password-strength-indicator");
-		})
+		});
 	});
 
 	describe("PasswordStrengthCalculator", function() {
@@ -129,7 +128,6 @@ describe("jquery.passwordStrengthIndicator", function() {
 			result = input.passwordStrengthIndicator("calculate", "This 1 is a really? strong password");
 			expect(result).toEqual(54);
 		});
-	
 	});
 
 	describe("Indicator", function() {
@@ -181,11 +179,11 @@ describe("jquery.passwordStrengthIndicator", function() {
 			
 			function setInputValueTo(value) {
 				input.val(value).trigger("keyup");
-			};
+			}
 			
 			function getIndicator() {
 				return html.find("." + options.indicatorClassName);
-			};
+			}
 
 			it("should have very-week class for password with 0 points", function() {
 				setInputValueTo("");
@@ -211,9 +209,6 @@ describe("jquery.passwordStrengthIndicator", function() {
 				setInputValueTo("abcdefghijklmnopqrstuvwxz");
 				expect(getIndicator().hasClass("very-strong")).toEqual(true);
 			});
-
 		});
-
 	});
-
 });
