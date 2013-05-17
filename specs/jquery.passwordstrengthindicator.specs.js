@@ -9,8 +9,8 @@ describe("jquery.passwordStrengthIndicator", function() {
 		var defaults = {
 			secureStrength: 25,
 			
+			indicatorElement: $("<span>&nbsp;</span>"),
 			indicatorClassName: "password-strength-indicator",
-			
 			indicatorDisplayType: "inline-block",
 		
 			points: {
@@ -33,7 +33,13 @@ describe("jquery.passwordStrengthIndicator", function() {
 		
 		it("should get the defaults calling the plugin with 'defaults' as the first argument", function () {
 			var results = $("#password").passwordStrengthIndicator("defaults");
-			expect(results).toEqual(defaults);
+			
+			expect(results.secureStrength).toEqual(defaults.secureStrength);
+			expect(results.indicatorElement[0].outerHTML == defaults.indicatorElement[0].outerHTML).toBeTruthy();
+			expect(results.indicatorClassName).toEqual(defaults.indicatorClassName);
+			expect(results.indicatorDisplayType).toEqual(defaults.indicatorDisplayType);
+			expect(results.points).toEqual(defaults.points);
+			expect(results.strengthClassNames).toEqual(defaults.strengthClassNames);
 		});
 		
 		it("should get the score calling the plugin with 'calculate' as the first argument and a string as the second argument", function () {
@@ -47,7 +53,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 			});
 
 			var defaults = $("#password").passwordStrengthIndicator("defaults");
-			expect(defaults	.indicatorClassName).toEqual("password-strength-indicator");
+			expect(defaults.indicatorClassName).toEqual("password-strength-indicator");
 		});
 	});
 
@@ -143,7 +149,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 		
 		function getIndicator() {
 			return html.find("." + defaults.indicatorClassName);
-		};
+		}
 
 		it("should have default indicator class name", function() {
 			expect(getIndicator().attr("class")).toEqual("password-strength-indicator");

@@ -86,8 +86,8 @@ $(function() {
 	var defaults = {
 		secureStrength: 25,
 		
+		indicatorElement: $("<span>&nbsp;</span>"),
 		indicatorClassName: "password-strength-indicator",
-		
 		indicatorDisplayType: "inline-block",
 	
 		points: {
@@ -107,7 +107,7 @@ $(function() {
 			var settings = $.extend({}, defaults, options);
 			
 			var $inputElement = $(this);
-			var $indicatorElement = $("<span>&nbsp;</span>").attr("class", settings.indicatorClassName);
+			var $indicatorElement = settings.indicatorElement.attr("class", settings.indicatorClassName);
 			
 			var indicator = new Indicator($indicatorElement, settings);
 			
