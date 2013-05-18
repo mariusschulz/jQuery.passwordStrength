@@ -35,7 +35,7 @@ describe("jquery.passwordStrengthIndicator", function() {
 			var results = $("#password").passwordStrengthIndicator("defaults");
 			
 			expect(results.secureStrength).toEqual(defaults.secureStrength);
-			expect(results.indicatorElement[0].outerHTML == defaults.indicatorElement[0].outerHTML).toBeTruthy();
+			expect(results.indicatorElement).toBeUndefined();
 			expect(results.indicatorClassName).toEqual(defaults.indicatorClassName);
 			expect(results.indicatorDisplayType).toEqual(defaults.indicatorDisplayType);
 			expect(results.points).toEqual(defaults.points);

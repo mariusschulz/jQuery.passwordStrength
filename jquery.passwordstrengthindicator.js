@@ -86,7 +86,7 @@ $(function() {
 	var defaults = {
 		secureStrength: 25,
 		
-		indicatorElement: $("<span>&nbsp;</span>"),
+		indicatorElement: undefined,
 		indicatorClassName: "password-strength-indicator",
 		indicatorDisplayType: "inline-block",
 	
@@ -106,18 +106,21 @@ $(function() {
 		init: function(options) { 
 			var settings = $.extend({}, defaults, options);
 			
-			var $inputElement = $(this);
-			var $indicatorElement = settings.indicatorElement.attr("class", settings.indicatorClassName);
+			var $inputElement = $(this),
+				$indicatorElement = settings.indicatorElement || $("<span>&nbsp;</span>").insertAfter($inputElement);
+
+			$indicatorElement.attr("class", settings.indicatorClassName);
 			
 			var indicator = new Indicator($indicatorElement, settings);
 			
 			$inputElement.on("keyup", function() {
-				var password = $inputElement.val();
-				var score = methods.calculate(password, settings);
+				var password = $inputElement.val(),
+					score = methods.calculate(password, settings);
+
 				indicator.refresh(score);
 			});
-			
-			return $inputElement.after($indicatorElement);
+
+			return $inputElement;
 		},
 		
 		calculate: function(value, options) {
