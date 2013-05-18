@@ -101,24 +101,31 @@ $(function() {
 		
 		strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
 	};
-	
+
+	function getIndicatorElement($inputElement, settings) {
+		var $indicatorElement = settings.indicatorElement || $("<span>&nbsp;</span>").insertAfter($inputElement);
+
+		return $indicatorElement.attr("class", settings.indicatorClassName);
+	}
+
+	function refreshIndicatorOnInputKeyup(indicator, $inputElement, settings) {
+		$inputElement.on("keyup", function() {
+			var password = $inputElement.val(),
+				score = methods.calculate(password, settings);
+
+			indicator.refresh(score);
+		});
+	}
+
 	var methods = {
 		init: function(options) { 
 			var settings = $.extend({}, defaults, options);
 			
 			var $inputElement = $(this),
-				$indicatorElement = settings.indicatorElement || $("<span>&nbsp;</span>").insertAfter($inputElement);
+				$indicatorElement = getIndicatorElement($inputElement, settings),
+				indicator = new Indicator($indicatorElement, settings);
 
-			$indicatorElement.attr("class", settings.indicatorClassName);
-			
-			var indicator = new Indicator($indicatorElement, settings);
-			
-			$inputElement.on("keyup", function() {
-				var password = $inputElement.val(),
-					score = methods.calculate(password, settings);
-
-				indicator.refresh(score);
-			});
+			refreshIndicatorOnInputKeyup(indicator, $inputElement, settings);
 
 			return $inputElement;
 		},
