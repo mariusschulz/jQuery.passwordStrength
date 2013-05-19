@@ -8,15 +8,17 @@ the **strength of a password** a user enters into a password input field.
 
 Using `jQuery.passwordStrength` is fairly simple — you only need to call a single method on the password field you want the plugin to monitor:
 
-    <form action="#" method="get">
-        <input type="password" id="password" />
-    </form>
-
-    <script type="text/javascript">
-        $(function() {
-            $("#password").passwordStrength();
-        });
-    </script>
+```html
+<form action="#" method="get">
+    <input type="password" id="password" />
+</form>
+    
+<script type="text/javascript">
+    $(function() {
+        $("#password").passwordStrength();
+    });
+</script>
+```
     
     
 ## How does the plugin work?
@@ -53,29 +55,31 @@ Of course, nobody stops you from doing some fancy JavaScript stuff based on the 
 ## Options
 Below are the options and the default values that you can override by passing a settings object into the plugin.
 
-    $("#password").passwordStrength({
-        // The password strength you consider secure
-        secureStrength: 25,
+```javascript
+$("#password").passwordStrength({
+    // The password strength you consider secure
+    secureStrength: 25,
 
-        // Allows you to specify a custom indicator element (arbitrary jQuery selection)
-        $indicator: undefined,
+    // Allows you to specify a custom indicator element (arbitrary jQuery selection)
+    $indicator: undefined,
 
-        // The class that the indicator element will have
-        indicatorClassName: "password-strength-indicator",
+    // The class that the indicator element will have
+    indicatorClassName: "password-strength-indicator",
 
-        // CSS "display" property of the indicator elements
-        indicatorDisplayType: "inline-block",
+    // CSS "display" property of the indicator elements
+    indicatorDisplayType: "inline-block",
 
-        // Points for different character sets
-        points: {
-            forEachCharacter: 1,
-            forEachSpace: 1,
-            containsLowercaseLetter: 2,
-            containsUppercaseLetter: 2,
-            containsNumber: 4,
-            containsSymbol: 5
-        },
+    // Points for different character sets
+    points: {
+        forEachCharacter: 1,
+        forEachSpace: 1,
+        containsLowercaseLetter: 2,
+        containsUppercaseLetter: 2,
+        containsNumber: 4,
+        containsSymbol: 5
+    },
 
-        // The class names to give the indicator element, according to the current password strength
-        strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
-    });
+    // The class names to give the indicator element, according to the current password strength
+    strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+});
+```
