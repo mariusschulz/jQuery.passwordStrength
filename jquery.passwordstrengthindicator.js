@@ -108,13 +108,15 @@ $(function() {
 		return $indicatorElement.attr("class", settings.indicatorClassName);
 	}
 
-	function refreshIndicatorOnInputKeyup(indicator, $inputElement, settings) {
-		$inputElement.on("keyup", function() {
+	function setupAutomaticIndicatorRefresh(indicator, $inputElement, settings) {
+		var refresh = function() {
 			var password = $inputElement.val(),
 				score = methods.calculate(password, settings);
 
 			indicator.refresh(score);
-		});
+		};
+
+		$inputElement.on("keyup", refresh);
 	}
 
 	var methods = {
@@ -125,7 +127,7 @@ $(function() {
 				$indicatorElement = getIndicatorElement($inputElement, settings),
 				indicator = new Indicator($indicatorElement, settings);
 
-			refreshIndicatorOnInputKeyup(indicator, $inputElement, settings);
+			setupAutomaticIndicatorRefresh(indicator, $inputElement, settings);
 
 			return $inputElement;
 		},
