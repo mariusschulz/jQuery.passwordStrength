@@ -54,16 +54,28 @@ Of course, nobody stops you from doing some fancy JavaScript stuff based on the 
 Below are the options and the default values that you can override by passing a settings object into the plugin.
 
     $("#password").passwordStrength({
-            secureStrength: 25,
-            indicatorClassName: "password-strength-indicator",
-            indicatorDisplayType: "inline-block",
-            points: {
-                forEachCharacter: 1,
-                forEachSpace: 1,
-                containsLowercaseLetter: 2,
-                containsUppercaseLetter: 2,
-                containsNumber: 4,
-                containsSymbol: 5
-            },
-            strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+        // The password strength you consider secure
+        secureStrength: 25,
+
+        // Allows you to specify a custom indicator element (arbitrary jQuery selection)
+        $indicator: undefined,
+
+        // The class that the indicator element will have
+        indicatorClassName: "password-strength-indicator",
+
+        // CSS "display" property of the indicator elements
+        indicatorDisplayType: "inline-block",
+
+        // Points for different character sets
+        points: {
+            forEachCharacter: 1,
+            forEachSpace: 1,
+            containsLowercaseLetter: 2,
+            containsUppercaseLetter: 2,
+            containsNumber: 4,
+            containsSymbol: 5
+        },
+
+        // The class names to give the indicator element, according to the current password strength
+        strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
     });
