@@ -1,12 +1,12 @@
-# jQuery.passwordStrengthIndicator
+# jQuery.passwordStrength
 
-`jQuery.passwordStrengthIndicator` is a **minimalist jQuery plugin** that **visualizes**
+`jQuery.passwordStrength` is a **minimalist jQuery plugin** that **visualizes**
 the **strength of a password** a user enters into a password input field.
 
 
 ## Example Usage
 
-Using `jQuery.passwordStrengthIndicator` is fairly simple — you only need to call a single method on the password field you want the plugin to monitor:
+Using `jQuery.passwordStrength` is fairly simple — you only need to call a single method on the password field you want the plugin to monitor:
 
     <form action="#" method="get">
         <input type="password" id="password" />
@@ -14,7 +14,7 @@ Using `jQuery.passwordStrengthIndicator` is fairly simple — you only need to c
 
     <script type="text/javascript">
         $(function() {
-            $("#password").passwordStrengthIndicator();
+            $("#password").passwordStrength();
         });
     </script>
     
@@ -53,7 +53,7 @@ Of course, nobody stops you from doing some fancy JavaScript stuff based on the 
 ## Options
 Below are the options and the default values that you can override by passing a settings object into the plugin.
 
-    $("#password").passwordStrengthIndicator({
+    $("#password").passwordStrength({
             secureStrength: 25,
             indicatorClassName: "password-strength-indicator",
             indicatorDisplayType: "inline-block",
