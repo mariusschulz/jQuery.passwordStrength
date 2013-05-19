@@ -86,7 +86,7 @@ $(function() {
 	var defaults = {
 		secureStrength: 25,
 		
-		indicatorElement: undefined,
+		$indicator: undefined,
 		indicatorClassName: "password-strength-indicator",
 		indicatorDisplayType: "inline-block",
 	
@@ -102,34 +102,34 @@ $(function() {
 		strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
 	};
 
-	function getIndicatorElement($inputElement, settings) {
-		var $indicatorElement = settings.indicatorElement || $("<span>&nbsp;</span>").insertAfter($inputElement);
+	function getIndicatorElement($input, settings) {
+		var $indicator = settings.$indicator || $("<span>&nbsp;</span>").insertAfter($input);
 
-		return $indicatorElement.attr("class", settings.indicatorClassName);
+		return $indicator.attr("class", settings.indicatorClassName);
 	}
 
-	function setupAutomaticIndicatorRefresh(indicator, $inputElement, settings) {
+	function setupAutomaticIndicatorRefresh(indicator, $input, settings) {
 		var refresh = function() {
-			var password = $inputElement.val(),
+			var password = $input.val(),
 				score = methods.calculate(password, settings);
 
 			indicator.refresh(score);
 		};
 
-		$inputElement.on("keyup", refresh);
+		$input.on("keyup", refresh);
 	}
 
 	var methods = {
 		init: function(options) { 
 			var settings = $.extend({}, defaults, options);
 			
-			var $inputElement = $(this),
-				$indicatorElement = getIndicatorElement($inputElement, settings),
-				indicator = new Indicator($indicatorElement, settings);
+			var $input = $(this),
+				$indicator = getIndicatorElement($input, settings),
+				indicator = new Indicator($indicator, settings);
 
-			setupAutomaticIndicatorRefresh(indicator, $inputElement, settings);
+			setupAutomaticIndicatorRefresh(indicator, $input, settings);
 
-			return $inputElement;
+			return $input;
 		},
 		
 		calculate: function(value, options) {
