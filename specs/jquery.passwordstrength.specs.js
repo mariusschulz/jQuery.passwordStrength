@@ -209,12 +209,12 @@ describe("jquery.passwordStrength", function() {
 				return html.find("." + options.indicatorClassName);
 			}
 
-			it("should have very-week class for password with 0 points", function() {
+			it("should have very-weak class for password with 0 points", function() {
 				setInputValueTo("");
 				expect(getIndicator().hasClass("very-weak")).toEqual(true);
 			});
 			
-			it("should have week class for password with 7 points", function() {
+			it("should have weak class for password with 7 points", function() {
 				setInputValueTo("abcde");
 				expect(getIndicator().hasClass("weak")).toEqual(true);
 			});
