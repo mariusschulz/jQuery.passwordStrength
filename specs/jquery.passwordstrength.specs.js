@@ -22,7 +22,22 @@ describe("jquery.passwordStrength", function() {
 				containsSymbol: 5
 			},
 			
-			strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+			strengthClassNames: [{
+				name: "very-weak",
+				text: "very weak"
+			}, {
+				name: "weak",
+				text: "weak"
+			}, {
+				name: "mediocre",
+				text: "mediocre"
+			}, {
+				name: "strong",
+				text: "strong"
+			}, {
+				name: "very-strong",
+				text: "very strong"
+			}]
 		};
 		
 		it("should initialize the plugin calling it with no arguments", function () {
