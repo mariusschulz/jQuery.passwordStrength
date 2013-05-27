@@ -89,6 +89,8 @@ $(function() {
 		$indicator: undefined,
 		indicatorClassName: "password-strength-indicator",
 		indicatorDisplayType: "inline-block",
+
+		text: true,
 	
 		points: {
 			forEachCharacter: 1,
