@@ -72,11 +72,15 @@ $(function() {
 					$indicator.hide();
 				}
 
-				var strengthClass = getStrengthClass(score).name;
+				var strengthClass = getStrengthClass(score);
 				$.each(settings.strengthClassNames, function(index, value) {
                     $indicator.removeClass(value.name);
                 });
-				$indicator.addClass(strengthClass);
+				$indicator.addClass(strengthClass.name);
+
+				if (settings.text) {
+					$indicator.text(strengthClass.text);
+				}
 			}
 		};
 	};

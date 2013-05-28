@@ -234,5 +234,53 @@ describe("jquery.passwordStrength", function() {
 				expect(getIndicator().hasClass("very-strong")).toEqual(true);
 			});
 		});
+
+		describe("Texts", function() {
+			var html;
+			var input;
+			var options;
+
+			beforeEach(function() {
+				options = { indicatorClassName: "indicator-texts" };
+
+				jasmine.getFixtures().set(fixtureHtml)
+				
+				html = $("#root");
+				input = $("#password").passwordStrength(options);
+			});
+			
+			function setInputValueTo(value) {
+				input.val(value).trigger("keyup");
+			}
+			
+			function getIndicator() {
+				return html.find("." + options.indicatorClassName);
+			}
+
+			it("should have text 'very weak' for password with score 0", function() {
+				setInputValueTo("");
+				expect(getIndicator().text()).toEqual("very weak");
+			});
+
+			it("should have text 'weak' for password with score 7", function() {
+				setInputValueTo("abcde");
+				expect(getIndicator().text()).toEqual("weak");
+			});
+
+			it("should have text 'mediocre' for password with score 13", function() {
+				setInputValueTo("abcdefghijk");
+				expect(getIndicator().text()).toEqual("mediocre");
+			});
+
+			it("should have text 'strong' for password with score 19", function() {
+				setInputValueTo("abcdefghijklmnopq");
+				expect(getIndicator().text()).toEqual("strong");
+			});
+
+			it("should have text 'very strong' for password with score 25", function() {
+				setInputValueTo("abcdefghijklmnopqrstuvwxz");
+				expect(getIndicator().text()).toEqual("very strong");
+			});
+		});
 	});
 });
