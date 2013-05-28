@@ -74,9 +74,13 @@ $(function() {
 
 				var strengthClass = getStrengthClass(score);
 				$.each(settings.strengthClassNames, function(index, value) {
-                    $indicator.removeClass(value);
+                    $indicator.removeClass(value.name);
                 });
-				$indicator.addClass(strengthClass);
+				$indicator.addClass(strengthClass.name);
+
+				if (settings.text) {
+					$indicator.text(strengthClass.text);
+				}
 			}
 		};
 	};
@@ -89,6 +93,8 @@ $(function() {
 		$indicator: undefined,
 		indicatorClassName: "password-strength-indicator",
 		indicatorDisplayType: "inline-block",
+
+		text: true,
 	
 		points: {
 			forEachCharacter: 1,
@@ -99,7 +105,22 @@ $(function() {
 			containsSymbol: 5
 		},
 		
-		strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+		strengthClassNames: [{
+			name: "very-weak",
+			text: "very weak"
+		}, {
+			name: "weak",
+			text: "weak"
+		}, {
+			name: "mediocre",
+			text: "mediocre"
+		}, {
+			name: "strong",
+			text: "strong"
+		}, {
+			name: "very-strong",
+			text: "very strong"
+		}]
 	};
 
 	function getIndicatorElement($input, settings) {

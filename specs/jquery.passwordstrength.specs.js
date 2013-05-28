@@ -12,6 +12,8 @@ describe("jquery.passwordStrength", function() {
 			$indicator: $("<span>&nbsp;</span>"),
 			indicatorClassName: "password-strength-indicator",
 			indicatorDisplayType: "inline-block",
+
+			text: true,
 		
 			points: {
 				forEachCharacter: 1,
@@ -22,7 +24,22 @@ describe("jquery.passwordStrength", function() {
 				containsSymbol: 5
 			},
 			
-			strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+			strengthClassNames: [{
+				name: "very-weak",
+				text: "very weak"
+			}, {
+				name: "weak",
+				text: "weak"
+			}, {
+				name: "mediocre",
+				text: "mediocre"
+			}, {
+				name: "strong",
+				text: "strong"
+			}, {
+				name: "very-strong",
+				text: "very strong"
+			}]
 		};
 		
 		it("should initialize the plugin calling it with no arguments", function () {
@@ -38,6 +55,7 @@ describe("jquery.passwordStrength", function() {
 			expect(results.$indicator).toBeUndefined();
 			expect(results.indicatorClassName).toEqual(defaults.indicatorClassName);
 			expect(results.indicatorDisplayType).toEqual(defaults.indicatorDisplayType);
+			expect(results.text).toEqual(defaults.text);
 			expect(results.points).toEqual(defaults.points);
 			expect(results.strengthClassNames).toEqual(defaults.strengthClassNames);
 		});
@@ -191,12 +209,12 @@ describe("jquery.passwordStrength", function() {
 				return html.find("." + options.indicatorClassName);
 			}
 
-			it("should have very-week class for password with 0 points", function() {
+			it("should have very-weak class for password with 0 points", function() {
 				setInputValueTo("");
 				expect(getIndicator().hasClass("very-weak")).toEqual(true);
 			});
 			
-			it("should have week class for password with 7 points", function() {
+			it("should have weak class for password with 7 points", function() {
 				setInputValueTo("abcde");
 				expect(getIndicator().hasClass("weak")).toEqual(true);
 			});
@@ -214,6 +232,54 @@ describe("jquery.passwordStrength", function() {
 			it("should have very-strong class for password with 25 points", function() {
 				setInputValueTo("abcdefghijklmnopqrstuvwxz");
 				expect(getIndicator().hasClass("very-strong")).toEqual(true);
+			});
+		});
+
+		describe("Texts", function() {
+			var html;
+			var input;
+			var options;
+
+			beforeEach(function() {
+				options = { indicatorClassName: "indicator-texts" };
+
+				jasmine.getFixtures().set(fixtureHtml)
+				
+				html = $("#root");
+				input = $("#password").passwordStrength(options);
+			});
+			
+			function setInputValueTo(value) {
+				input.val(value).trigger("keyup");
+			}
+			
+			function getIndicator() {
+				return html.find("." + options.indicatorClassName);
+			}
+
+			it("should have text 'very weak' for password with score 0", function() {
+				setInputValueTo("");
+				expect(getIndicator().text()).toEqual("very weak");
+			});
+
+			it("should have text 'weak' for password with score 7", function() {
+				setInputValueTo("abcde");
+				expect(getIndicator().text()).toEqual("weak");
+			});
+
+			it("should have text 'mediocre' for password with score 13", function() {
+				setInputValueTo("abcdefghijk");
+				expect(getIndicator().text()).toEqual("mediocre");
+			});
+
+			it("should have text 'strong' for password with score 19", function() {
+				setInputValueTo("abcdefghijklmnopq");
+				expect(getIndicator().text()).toEqual("strong");
+			});
+
+			it("should have text 'very strong' for password with score 25", function() {
+				setInputValueTo("abcdefghijklmnopqrstuvwxz");
+				expect(getIndicator().text()).toEqual("very strong");
 			});
 		});
 	});
