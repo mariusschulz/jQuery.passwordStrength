@@ -80,6 +80,21 @@ $("#password").passwordStrength({
     },
 
     // The class names to give the indicator element, according to the current password strength
-    strengthClassNames: ["very-weak", "weak", "mediocre", "strong", "very-strong"]		
+    strengthClassNames: [{
+        name: "very-weak",
+        text: "very weak"
+      }, {
+        name: "weak",
+        text: "weak"
+      }, {
+        name: "mediocre",
+        text: "mediocre"
+      }, {
+        name: "strong",
+        text: "strong"
+      }, {
+        name: "very-strong",
+        text: "very strong"
+      }]
 });
 ```
