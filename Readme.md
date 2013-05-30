@@ -12,15 +12,15 @@ Using `jQuery.passwordStrength` is fairly simple — you only need to call a sin
 <form action="#" method="get">
     <input type="password" id="password" />
 </form>
-    
+
 <script type="text/javascript">
     $(function() {
         $("#password").passwordStrength();
     });
 </script>
 ```
-    
-    
+
+
 ## How does the plugin work?
 
 The password strength algorithm is quite basic.
